@@ -45,7 +45,9 @@ rails server -p 3000
 
 ### 2. Frontend (React)
 Bash
+
 `# Na raiz do projeto`
+
 npm install
 
 npm run dev
