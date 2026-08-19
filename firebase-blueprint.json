@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Responsável legal da conta matriz.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "privacyTermsAccepted": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "email", "privacyTermsAccepted", "createdAt"]
+    },
+    "HealthProfile": {
+      "title": "Health Profile",
+      "description": "Perfil de saúde vinculado a um usuário.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "parentUid": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["self", "child", "other"] },
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "allergies": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "parentUid", "name", "type"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Produto cadastrado na base global via escaneamento.",
+      "type": "object",
+      "properties": {
+        "barcode": { "type": "string" },
+        "name": { "type": "string" },
+        "brand": { "type": "string" },
+        "model": { "type": "string" },
+        "country": { "type": "string" },
+        "language": { "type": "string" },
+        "ingredientsText": { "type": "string" },
+        "ingredientsOriginal": { "type": "string" },
+        "nutritionalInfo": { "type": "string" },
+        "lastProcessed": { "type": "string", "format": "date-time" }
+      },
+      "required": ["barcode", "ingredientsText"]
+    },
+    "ScanHistory": {
+      "title": "Scan History",
+      "description": "Histórico de escaneamentos realizados por um perfil.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productName": { "type": "string" },
+        "status": { "type": "string", "enum": ["green", "yellow", "red"] },
+        "reason": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "ingredients": { "type": "string" },
+        "userRating": { "type": "number" },
+        "userComment": { "type": "string" }
+      },
+      "required": ["productName", "status", "reason", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Dados da conta matriz."
+    },
+    "/users/{userId}/profiles/{profileId}": {
+      "schema": "HealthProfile",
+      "description": "Perfis de saúde do usuário."
+    },
+    "/users/{userId}/profiles/{profileId}/scans/{scanId}": {
+      "schema": "ScanHistory",
+      "description": "Histórico de análises de produtos."
+    },
+    "/products/{barcode}": {
+      "schema": "Product",
+      "description": "Base global de produtos escaneados."
+    }
+  }
+}

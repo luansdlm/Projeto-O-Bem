@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Bloqueio global
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Funções auxiliares
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function isOwnerOfProfile(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Regras para Usuários (LGPD)
+    match /users/{userId} {
+      allow get, write: if isOwner(userId);
+      
+      // Perfis de Saúde (Subcontas)
+      match /profiles/{profileId} {
+        allow read, write: if isOwner(userId);
+
+        // Histórico de Escaneamentos
+        match /scans/{scanId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+    }
+
+    // Base Global de Produtos
+    match /products/{barcode} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if false; // Produtos são imutáveis após cadastro ou exigem revisão humana/admin
+    }
+  }
+}

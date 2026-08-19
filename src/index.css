@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+#barcode-scanner-target {
+  background-color: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+#barcode-scanner-target video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  background-color: transparent !important;
+}
+
+/* Suporte de Acessibilidade: Aumento controlado para evitar quebra de layout de ícones */
+.accessibility-lg {
+  font-size: 1.06rem !important;
+}
+.accessibility-lg h1 {
+  font-size: 1.3rem !important;
+}
+.accessibility-lg h2 {
+  font-size: 1.45rem !important;
+}
+.accessibility-lg h3 {
+  font-size: 1.3rem !important;
+}
+.accessibility-lg p, .accessibility-lg label, .accessibility-lg select {
+  font-size: 1.02rem !important;
+}
+.accessibility-lg button {
+  font-size: 1.0rem !important;
+}
+
+.accessibility-xl {
+  font-size: 1.15rem !important;
+}
+.accessibility-xl h1 {
+  font-size: 1.45rem !important;
+}
+.accessibility-xl h2 {
+  font-size: 1.6rem !important;
+}
+.accessibility-xl h3 {
+  font-size: 1.45rem !important;
+}
+.accessibility-xl p, .accessibility-xl label, .accessibility-xl select {
+  font-size: 1.12rem !important;
+}
+.accessibility-xl button {
+  font-size: 1.08rem !important;
+}
+
+/* Comportamento fluído para telas escuras */
+body, #root {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.dark body, .dark #root {
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+}

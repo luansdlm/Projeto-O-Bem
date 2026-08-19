@@ -1,0 +1,39 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '>= 3.0.0'
+
+# Bundle edge Rails instead of: gem 'rails'
+gem 'rails', '~> 7.1.0'
+
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.5'
+
+# Use the Puma web server
+gem 'puma', '~> 6.0'
+
+# Active Model Violations & JSON Serialization
+gem 'active_model_serializers', '~> 0.10.0'
+
+# Build JSON APIs with ease
+gem 'jbuilder', '~> 2.11'
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making API accessible from React
+gem 'rack-cors'
+
+# JWT for decoding & validating Firebase Authentication ID Tokens safely
+gem 'jwt', '~> 2.7'
+
+# HTTP Client for querying Gemini APIs safely on the server-side
+gem 'httparty', '~> 0.21.0'
+
+# Environment variables
+gem 'dotenv-rails', groups: [:development, :test]
+
+group :development, :test do
+  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+end
+
+group :development do
+  gem 'spring'
+end

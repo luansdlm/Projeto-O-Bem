@@ -1,0 +1,6 @@
+{
+  "name": "Projeto OBem AI",
+  "description": "Aplicativo de saúde para identificação de restrições alimentares e medicamentosas através de escaneamento de rótulos com IA.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
