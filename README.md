@@ -45,8 +45,9 @@ rails server -p 3000
 
 ### 2. Frontend (React)
 Bash
-# Na raiz do projeto
+`# Na raiz do projeto`
 npm install
+
 npm run dev
 
-- Alternância de Backend: Para alternar entre o backend Rails e Firebase direto, basta alterar a flag BACKEND_TYPE no arquivo src/lib/config.ts.
+- Alternância de Backend:  Para alternar entre o backend Rails e Firebase direto, basta alterar a flag BACKEND_TYPE no arquivo src/lib/config.ts.
